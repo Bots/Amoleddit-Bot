@@ -1,0 +1,19 @@
+{
+  "name": "amoleddit_twitter_bot",
+  "version": "1.0.0",
+  "description": "NodeJs twitter bot for reposting images found in the /r/amoledbackgrounds subreddit",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Paul Wile",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^3.3.0",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "reddit-snooper": "^1.0.1",
+    "request": "^2.88.0",
+    "twit": "^2.2.11"
+  }
+}
