@@ -27,7 +27,7 @@ const twit = new Twit({
 // Set global vars
 let author
 let title
-let url
+let permalink
 
 // Event listener to watch for new posts on subreddit and download them
 snooper.watcher.getPostWatcher('Amoledbackgrounds')
@@ -37,10 +37,10 @@ snooper.watcher.getPostWatcher('Amoledbackgrounds')
 		// Check to make sure the post is not stickied, that it's an image post, and that it contains a link
 		if (!newPost.data.stickied && newPost.kind === 't3' && urlMatch) {
 
-			// Grab the author, title, and URL 
+			// Grab the author, title, and URL
 			author = newPost.data.author
 			title = newPost.data.title
-			url = newPost.data.url
+			permalink = newPost.data.permalink
 			
 			// Download the new post
 			console.log('New post detected')
@@ -68,14 +68,14 @@ snooper.watcher.getPostWatcher('Amoledbackgrounds')
 			// now we can assign alt text to the media, for use by screen readers and
 			// other text-based presentations and interpreters
 			var mediaIdStr = data.media_id_string
-			var altText = "New Amoled background by: /u/" + author + " titled: " + title + '. Fullsize image can be found here: ' + url
+			var altText = "New Amoled background by: /u/" + author + " titled: " + title + '. Upvote the post here: reddit.com' + permalink + ' #Amoled #Wallpapers #Backgrounds'
 			var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
 		
 			twit.post('media/metadata/create', meta_params, function (err, data, response) {
 			if (!err) {
 				// now we can reference the media and post a tweet (media will attach to the tweet)
 				var params = { status: 'New Post From /r/AmoledBackrounds by: /u/' +
-				author + ' titled: "' + title + '". Fullsize image can be found here: ' + url, media_ids: [mediaIdStr] }
+				author + ' titled: "' + title + '". Upvote the post here: reddit.com' + permalink + ' #Amoled #Wallpapers #Backgrounds', media_ids: [mediaIdStr] }
 		
 				twit.post('statuses/update', params, function (err, data, response) {
 				console.log(data)
