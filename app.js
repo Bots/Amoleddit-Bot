@@ -78,7 +78,6 @@ snooper.watcher.getPostWatcher('Amoledbackgrounds')
 				author + ' titled: "' + title + '". Upvote the post here: reddit.com' + permalink + ' #Amoled #Wallpapers #Backgrounds', media_ids: [mediaIdStr] }
 		
 				twit.post('statuses/update', params, function (err, data, response) {
-				console.log(data)
 				})
 			} else {
 				console.log(err)
